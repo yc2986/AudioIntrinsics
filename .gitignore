@@ -1,0 +1,5 @@
+**/.DS_Store
+.vscode/browse*
+.vscode/ipch
+.build/*
+build/*
