@@ -1,0 +1,85 @@
+language: cpp
+os: linux
+dist: xenial
+sudo: false
+
+matrix:
+  include:
+    # linux clang
+    - env:
+        - COMPILER_CC=clang-5.0
+        - COMPILER_CXX=clang++-5.0
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-xenial-5
+          packages:
+            - clang-5.0
+            - libgtest-dev
+    - env:
+        - COMPILER_CC=clang-6.0
+        - COMPILER_CXX=clang++-6.0
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-xenial-6
+          packages:
+            - clang-6.0
+            - libgtest-dev
+    - env:
+        - COMPILER_CC=clang-7
+        - COMPILER_CXX=clang++-7
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-xenial-7
+          packages:
+            - clang-7
+            - libgtest-dev
+    - env:
+        - COMPILER_CC=clang-8
+        - COMPILER_CXX=clang++-8
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-xenial-8
+          packages:
+            - clang-8
+            - libgtest-dev
+    # linux gcc
+    - env:
+        - COMPILER_CC=gcc-7
+        - COMPILER_CXX=g++-7
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-7
+            - g++-7
+            - libgtest-dev
+    - env:
+        - COMPILER_CC=gcc-8
+        - COMPILER_CXX=g++-8
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-8
+            - g++-8
+            - libgtest-dev
+
+before_script:
+  # setup compiler before running script
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      export CC=${COMPILER_CC};
+      export CXX=${COMPILER_CXX};
+    fi
+  # setup build environment
+  - source envsetup.sh
+
+script:
+  - cartifact
+  - cmake ${BUILD_TOP}
+  - make -j
