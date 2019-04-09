@@ -19,13 +19,10 @@ set(CMAKE_CXX_FLAGS_RELEASE "-Wall \
                              -funroll-loops \
                              -march=native")
 
-# directory
-set(BUILD_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
-
 # configure output directory
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BUILD_OUTPUT_DIRECTORY}/static)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BUILD_OUTPUT_DIRECTORY}/shared)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BUILD_OUTPUT_DIRECTORY}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/static)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/shared)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # subdirectory
 add_subdirectory(external)
