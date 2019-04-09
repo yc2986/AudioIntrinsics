@@ -1,0 +1,13 @@
+# commit headline.
+commit message
+
+# define the scope of the task.
+# possibly with the issue number.
+[problem]
+
+# overview of the task design and
+# implementation.
+[solution]
+
+# test case description.
+[test]
