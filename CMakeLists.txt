@@ -16,8 +16,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "-Wall \
                              -Wextra \
                              -Werror \
                              -Ofast \
-                             -frename-registers \
-                             -funroll-loops")
+                             -funroll-loops \
+                             -march=native")
 
 # directory
 set(BUILD_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)

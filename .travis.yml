@@ -11,8 +11,6 @@ matrix:
         - COMPILER_CXX=clang++-5.0
       addons:
         apt:
-          sources:
-            - llvm-toolchain-xenial-5
           packages:
             - clang-5.0
             - libgtest-dev
@@ -22,7 +20,7 @@ matrix:
       addons:
         apt:
           sources:
-            - llvm-toolchain-xenial-6
+            - llvm-toolchain-xenial-6.0
           packages:
             - clang-6.0
             - libgtest-dev
@@ -76,10 +74,16 @@ before_script:
       export CC=${COMPILER_CC};
       export CXX=${COMPILER_CXX};
     fi
+  # build gtest from source
+  - pushd .
+  - cd /tmp && mkdir -p gtest && cd gtest
+  - cmake -DCMAKE_BUILD_TYPE=RELEASE /usr/src/gtest/ && make -j
+  - sudo mv libgtest* /usr/lib/
+  - popd
   # setup build environment
   - source envsetup.sh
 
 script:
-  - cartifact
-  - cmake ${BUILD_TOP}
+  - cout
+  - cmake -DCMAKE_BUILD_TYPE=RELEASE ${BUILD_TOP}
   - make -j
