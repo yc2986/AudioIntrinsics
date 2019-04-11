@@ -84,6 +84,10 @@ before_script:
   - source envsetup.sh
 
 script:
-  - cout
+  - cbuild
   - cmake -DCMAKE_BUILD_TYPE=RELEASE ${BUILD_TOP}
   - make -j
+
+after_success:
+  # running ctest with all gtest cases
+  - make test
