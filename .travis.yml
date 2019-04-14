@@ -67,6 +67,19 @@ matrix:
             - gcc-8
             - g++-8
             - libgtest-dev
+    # test coverage
+    - env:
+        - COMPILER_CC=gcc-7
+        - COMPILER_CXX=g++-7
+        - CODECOV_TOKEN="9e95703c-c009-41f1-8128-899cf8ef98b0"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-7
+            - g++-7
+            - libgtest-dev
 
 before_script:
   # setup compiler before running script
@@ -85,9 +98,15 @@ before_script:
 
 script:
   - cbuild
-  - cmake -DCMAKE_BUILD_TYPE=RELEASE ${BUILD_TOP}
+  - if [ -z "$CODECOV_TOKEN" ]; then
+      cmake -DCMAKE_BUILD_TYPE=DEBUG ${BUILD_TOP};
+    else
+      cmake -DCMAKE_BUILD_TYPE=RELEASE ${BUILD_TOP};
+    fi
   - make -j
-
-after_success:
   # running ctest with all gtest cases
   - make test
+
+after_success:
+  # upload test coverage to codecov
+  - if [ -z "$CODECOV_TOKEN" ]; then bash <(curl -s https://codecov.io/bash); fi
