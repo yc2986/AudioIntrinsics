@@ -5,20 +5,21 @@ project(AudioIntrinsics)
 # c++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # compiler flag
 set(CMAKE_CXX_FLAGS_DEBUG "-Wall \
                            -Wextra \
                            -Werror \
-                           -g")
+                           -O0 \
+                           -g \
+                           --coverage")
 set(CMAKE_CXX_FLAGS_RELEASE "-Wall \
                              -Wextra \
                              -Werror \
                              -Ofast \
                              -funroll-loops \
                              -march=native")
-
 # configure output directory
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out/static)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out/shared)
