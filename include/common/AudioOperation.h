@@ -114,4 +114,14 @@ inline size_t audioBytesFromAttribute(const audio_attribute_t &attribute) {
     return (audioSamplesFromAttribute(attribute) * audioBytesPerSample(attribute.format));
 }
 
+inline audio_attribute_t makeAttribute(uint32_t rate, size_t frames,
+                                       audio_format_t format, audio_channel_mask_t mask) {
+    return {
+        .samplerate = rate,
+        .framecount = frames,
+        .format = format,
+        .channelmask = mask
+    };
+}
+
 }  // namespace intrinsics

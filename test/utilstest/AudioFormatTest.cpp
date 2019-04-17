@@ -1,6 +1,6 @@
-#include <gtest/gtest.h>
-
 #include "AudioIntrinsics.h"
+
+#include <gtest/gtest.h>
 
 #include <vector>
 
@@ -24,7 +24,7 @@ TEST_P(AudioFormatTest, ParameterizedFormatSize) {
             << "expected bytes: " << param.bytes;
 }
 
-inline auto AudioFormatTestCase() {
+inline auto audioFormatTestCase() {
     return vector<AudioFormatTestParam> {
         { AUDIO_FORMAT_PCM_8_BIT, 1u },
         { AUDIO_FORMAT_PCM_16_BIT, 2u },
@@ -37,6 +37,6 @@ inline auto AudioFormatTestCase() {
 
 INSTANTIATE_TEST_CASE_P(AudioFormatToNumberOfBytes,
                         AudioFormatTest,
-                        ValuesIn(AudioFormatTestCase()));
+                        ValuesIn(audioFormatTestCase()));
 
 }  // namespace

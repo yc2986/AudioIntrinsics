@@ -1,6 +1,6 @@
-#include <gtest/gtest.h>
-
 #include "AudioIntrinsics.h"
+
+#include <gtest/gtest.h>
 
 #include <vector>
 
@@ -24,7 +24,7 @@ TEST_P(AudioChannelMaskTest, ParameterizedChannelCount) {
             << "expected channel: " << param.channels;
 }
 
-inline auto AudioChannelOutMaskTestCase() {
+inline auto audioChannelOutMaskTestCase() {
     return vector<AudioChannelMaskTestParam> {
         { AUDIO_CHANNEL_OUT_MONO, 1u },
         { AUDIO_CHANNEL_OUT_STEREO, 2u },
@@ -50,7 +50,7 @@ inline auto AudioChannelOutMaskTestCase() {
     };
 }
 
-inline auto AudioChannelInMaskTestCase() {
+inline auto audioChannelInMaskTestCase() {
     return vector<AudioChannelMaskTestParam> {
         { AUDIO_CHANNEL_IN_MONO, 1u },
         { AUDIO_CHANNEL_IN_STEREO, 2u },
@@ -65,10 +65,10 @@ inline auto AudioChannelInMaskTestCase() {
 
 INSTANTIATE_TEST_CASE_P(AudioChannelOutMaskToChannelCount,
                         AudioChannelMaskTest,
-                        ValuesIn(AudioChannelOutMaskTestCase()));
+                        ValuesIn(audioChannelOutMaskTestCase()));
 
 INSTANTIATE_TEST_CASE_P(AudioChannelInMaskToChannelCount,
                         AudioChannelMaskTest,
-                        ValuesIn(AudioChannelInMaskTestCase()));
+                        ValuesIn(audioChannelInMaskTestCase()));
 
 }  // namespace mask
