@@ -3,7 +3,9 @@ set(LOCAL_MODULE audio_intrinsics_test)
 find_package(GTest REQUIRED)
 
 # source files
-set(LOCAL_SRC_FILES utilstest/AudioAttributeTest.cpp
+set(LOCAL_SRC_FILES statustest/ErrorTest.cpp
+                    statustest/StatusTest.cpp
+                    utilstest/AudioAttributeTest.cpp
                     utilstest/AudioChannelMaskTest.cpp
                     utilstest/AudioFormatTest.cpp)
 
@@ -25,4 +27,5 @@ target_link_libraries(${LOCAL_MODULE} PUBLIC ${LOCAL_STATIC_LIBRARIES})
 target_link_libraries(${LOCAL_MODULE} PUBLIC ${LOCAL_SHARED_LIBRARIES})
 
 # sub test cases
+add_subdirectory(statustest)
 add_subdirectory(utilstest)
