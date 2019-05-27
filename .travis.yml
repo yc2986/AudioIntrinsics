@@ -11,8 +11,11 @@ matrix:
         - COMPILER_CXX=clang++-5.0
       addons:
         apt:
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
             - clang-5.0
+            - libstdc++-8-dev
             - libgtest-dev
     - env:
         - COMPILER_CC=clang-6.0
@@ -21,8 +24,10 @@ matrix:
         apt:
           sources:
             - llvm-toolchain-xenial-6.0
+            - ubuntu-toolchain-r-test
           packages:
             - clang-6.0
+            - libstdc++-8-dev
             - libgtest-dev
     - env:
         - COMPILER_CC=clang-7
@@ -31,8 +36,10 @@ matrix:
         apt:
           sources:
             - llvm-toolchain-xenial-7
+            - ubuntu-toolchain-r-test
           packages:
             - clang-7
+            - libstdc++-8-dev
             - libgtest-dev
     - env:
         - COMPILER_CC=clang-8
@@ -41,8 +48,10 @@ matrix:
         apt:
           sources:
             - llvm-toolchain-xenial-8
+            - ubuntu-toolchain-r-test
           packages:
             - clang-8
+            - libstdc++-8-dev
             - libgtest-dev
     # linux gcc
     - env:
